@@ -1,0 +1,327 @@
+<launch>
+  <env name="GAZEBO_MODEL_PATH" value="$GAZEBO_MODEL_PATH:$(find ardrone_gazebo)/models"/>
+  <env name="GAZEBO_PLUGIN_PATH" value="$GAZEBO_PLUGIN_PATH:$(find ardrone_gazebo)/plugins"/> <!--add custom plugins for drone to gazebo plugin path-->
+  <env name="GAZEBO_RESOURCE_PATH" value="$GAZEBO_RESOURCE_PATH:$(find ardrone_gazebo)/meshes"/>
+  
+  <arg name="world_name" default=""/>
+  <!-- <arg name="world_name" default="$(find sjtu_drone)/worlds/contest.world"/> -->
+  <arg name="paused" value="false"/>
+  <arg name="verbose" value="true"/>
+  <arg name="gui" value="true"/>
+  
+  <!-- launch the custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <!-- launch the drones -->
+
+  <!-- FIRST -->
+  <arg name="ardrone_1"              default="ardrone_1"/>  
+  <arg name="ardrone_1_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_1_x"            default="0.0" />
+  <arg name="ardrone_1_y"            default="0.0" />
+  <arg name="ardrone_1_z"            default="0.0" />
+  <arg name="ardrone_1_roll"         default="0.0"/>
+  <arg name="ardrone_1_pitch"        default="0.0"/>
+  <arg name="ardrone_1_yaw"          default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_1)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_1)" />
+    </node>
+    
+    <node name="$(arg ardrone_1)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_1_sdf_robot_file) -sdf 
+		-x $(arg ardrone_1_x) 
+		-y $(arg ardrone_1_y) 
+		-z $(arg ardrone_1_z)  
+		-R $(arg ardrone_1_roll) 
+		-P $(arg ardrone_1_pitch) 
+		-Y $(arg ardrone_1_yaw) 
+		-model $(arg ardrone_1)"/>
+  </group>
+
+  
+  <!-- SECOND -->
+  <arg name="ardrone_2"              default="ardrone_2"/>  
+  <arg name="ardrone_2_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_2_x"	     default="5.0" />
+  <arg name="ardrone_2_y"	     default="0.0" />
+  <arg name="ardrone_2_z"	     default="0.0" />
+  <arg name="ardrone_2_roll"	     default="0.0"/>
+  <arg name="ardrone_2_pitch"	     default="0.0"/>
+  <arg name="ardrone_2_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_2)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_2)" />
+    </node>
+    
+    <node name="$(arg ardrone_2)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_2_sdf_robot_file) -sdf 
+		-x $(arg ardrone_2_x) 
+		-y $(arg ardrone_2_y) 
+		-z $(arg ardrone_2_z)  
+		-R $(arg ardrone_2_roll) 
+		-P $(arg ardrone_2_pitch) 
+		-Y $(arg ardrone_2_yaw) 
+		-model $(arg ardrone_2)"/>
+  </group>
+
+
+  <!-- THIRD -->
+  <arg name="ardrone_3"              default="ardrone_3"/>  
+  <arg name="ardrone_3_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_3_x"	     default="5.0" />
+  <arg name="ardrone_3_y"	     default="5.0" />
+  <arg name="ardrone_3_z"	     default="0.0" />
+  <arg name="ardrone_3_roll"	     default="0.0"/>
+  <arg name="ardrone_3_pitch"	     default="0.0"/>
+  <arg name="ardrone_3_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_3)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_3)" />
+    </node>
+    
+    <node name="$(arg ardrone_3)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_3_sdf_robot_file) -sdf 
+		-x $(arg ardrone_3_x) 
+		-y $(arg ardrone_3_y) 
+		-z $(arg ardrone_3_z)  
+		-R $(arg ardrone_3_roll) 
+		-P $(arg ardrone_3_pitch) 
+		-Y $(arg ardrone_3_yaw) 
+		-model $(arg ardrone_3)"/>
+  </group>
+
+
+  <!-- FOURTH -->
+  <arg name="ardrone_4"              default="ardrone_4"/>  
+  <arg name="ardrone_4_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_4_x"	     default="0.0" />
+  <arg name="ardrone_4_y"	     default="5.0" />
+  <arg name="ardrone_4_z"	     default="0.0" />
+  <arg name="ardrone_4_roll"	     default="0.0"/>
+  <arg name="ardrone_4_pitch"	     default="0.0"/>
+  <arg name="ardrone_4_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_4)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_4)" />
+    </node>
+    
+    <node name="$(arg ardrone_4)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_4_sdf_robot_file) -sdf 
+		-x $(arg ardrone_4_x) 
+		-y $(arg ardrone_4_y) 
+		-z $(arg ardrone_4_z)  
+		-R $(arg ardrone_4_roll) 
+		-P $(arg ardrone_4_pitch) 
+		-Y $(arg ardrone_4_yaw) 
+		-model $(arg ardrone_4)"/>
+  </group>
+
+    <!-- FIFTH -->
+  <arg name="ardrone_5"              default="ardrone_5"/>  
+  <arg name="ardrone_5_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_5_x"	     default="0.0" />
+  <arg name="ardrone_5_y"	     default="10.0" />
+  <arg name="ardrone_5_z"	     default="0.0" />
+  <arg name="ardrone_5_roll"	     default="0.0"/>
+  <arg name="ardrone_5_pitch"	     default="0.0"/>
+  <arg name="ardrone_5_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_5)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_5)" />
+    </node>
+    
+    <node name="$(arg ardrone_5)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_5_sdf_robot_file) -sdf 
+		-x $(arg ardrone_5_x) 
+		-y $(arg ardrone_5_y) 
+		-z $(arg ardrone_5_z)  
+		-R $(arg ardrone_5_roll) 
+		-P $(arg ardrone_5_pitch) 
+		-Y $(arg ardrone_5_yaw) 
+		-model $(arg ardrone_5)"/>
+  </group>
+
+
+    <!-- SIXTH -->
+  <arg name="ardrone_6"              default="ardrone_6"/>  
+  <arg name="ardrone_6_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_6_x"	     default="5.0" />
+  <arg name="ardrone_6_y"	     default="10.0" />
+  <arg name="ardrone_6_z"	     default="0.0" />
+  <arg name="ardrone_6_roll"	     default="0.0"/>
+  <arg name="ardrone_6_pitch"	     default="0.0"/>
+  <arg name="ardrone_6_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_6)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_6)" />
+    </node>
+    
+    <node name="$(arg ardrone_6)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_6_sdf_robot_file) -sdf 
+		-x $(arg ardrone_6_x) 
+		-y $(arg ardrone_6_y) 
+		-z $(arg ardrone_6_z)  
+		-R $(arg ardrone_6_roll) 
+		-P $(arg ardrone_6_pitch) 
+		-Y $(arg ardrone_6_yaw) 
+		-model $(arg ardrone_6)"/>
+  </group>
+
+    <!-- SEVENTH -->
+  <arg name="ardrone_7"              default="ardrone_7"/>  
+  <arg name="ardrone_7_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_7_x"	     default="5.0" />
+  <arg name="ardrone_7_y"	     default="15.0" />
+  <arg name="ardrone_7_z"	     default="0.0" />
+  <arg name="ardrone_7_roll"	     default="0.0"/>
+  <arg name="ardrone_7_pitch"	     default="0.0"/>
+  <arg name="ardrone_7_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_7)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_7)" />
+    </node>
+    
+    <node name="$(arg ardrone_7)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_7_sdf_robot_file) -sdf 
+		-x $(arg ardrone_7_x) 
+		-y $(arg ardrone_7_y) 
+		-z $(arg ardrone_7_z)  
+		-R $(arg ardrone_7_roll) 
+		-P $(arg ardrone_7_pitch) 
+		-Y $(arg ardrone_7_yaw) 
+		-model $(arg ardrone_7)"/>
+  </group>
+
+
+    <!-- EIGTH -->
+  <arg name="ardrone_8"              default="ardrone_8"/>  
+  <arg name="ardrone_8_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_8_x"	     default="0.0" />
+  <arg name="ardrone_8_y"	     default="15.0" />
+  <arg name="ardrone_8_z"	     default="0.0" />
+  <arg name="ardrone_8_roll"	     default="0.0"/>
+  <arg name="ardrone_8_pitch"	     default="0.0"/>
+  <arg name="ardrone_8_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_8)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_8)" />
+    </node>
+    
+    <node name="$(arg ardrone_8)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_8_sdf_robot_file) -sdf 
+		-x $(arg ardrone_8_x) 
+		-y $(arg ardrone_8_y) 
+		-z $(arg ardrone_8_z)  
+		-R $(arg ardrone_8_roll) 
+		-P $(arg ardrone_8_pitch) 
+		-Y $(arg ardrone_8_yaw) 
+		-model $(arg ardrone_8)"/>
+  </group>
+
+  <!-- NINETH -->
+  <arg name="ardrone_9"              default="ardrone_9"/>  
+  <arg name="ardrone_9_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_9_x"	     default="0.0" />
+  <arg name="ardrone_9_y"	     default="20.0" />
+  <arg name="ardrone_9_z"	     default="0.0" />
+  <arg name="ardrone_9_roll"	     default="0.0"/>
+  <arg name="ardrone_9_pitch"	     default="0.0"/>
+  <arg name="ardrone_9_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_9)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_9)" />
+    </node>
+    
+    <node name="$(arg ardrone_9)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_9_sdf_robot_file) -sdf 
+		-x $(arg ardrone_9_x) 
+		-y $(arg ardrone_9_y) 
+		-z $(arg ardrone_9_z)  
+		-R $(arg ardrone_9_roll) 
+		-P $(arg ardrone_9_pitch) 
+		-Y $(arg ardrone_9_yaw) 
+		-model $(arg ardrone_9)"/>
+  </group>
+
+
+    <!-- TENTH -->
+  <arg name="ardrone_10"              default="ardrone_10"/>  
+  <arg name="ardrone_10_sdf_robot_file" value="$(find ardrone_gazebo)/models/ardrone_gazebo/ardrone_gazebo.sdf"/>
+  <arg name="ardrone_10_x"	     default="5.0" />
+  <arg name="ardrone_10_y"	     default="20.0" />
+  <arg name="ardrone_10_z"	     default="0.0" />
+  <arg name="ardrone_10_roll"	     default="0.0"/>
+  <arg name="ardrone_10_pitch"	     default="0.0"/>
+  <arg name="ardrone_10_yaw"	     default="0.0"/>
+  
+
+  <group ns="$(arg ardrone_10)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ardrone_gazebo)/urdf/ardrone_gazebo.urdf'" /> 
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="$(arg ardrone_10)" />
+    </node>
+    
+    <node name="$(arg ardrone_10)_spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+          args="-file $(arg ardrone_10_sdf_robot_file) -sdf 
+		-x $(arg ardrone_10_x) 
+		-y $(arg ardrone_10_y) 
+		-z $(arg ardrone_10_z)  
+		-R $(arg ardrone_10_roll) 
+		-P $(arg ardrone_10_pitch) 
+		-Y $(arg ardrone_10_yaw) 
+		-model $(arg ardrone_10)"/>
+  </group>
+</launch>
