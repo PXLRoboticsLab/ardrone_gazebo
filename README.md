@@ -30,7 +30,7 @@ A single AR.Drone in an empty Gazebo world:
 ###  ROSNoeticDocker container
 
 This `ardrone_gazebo` package, and all its dependencies, are included in the
-["ROSNoeticDocker repository"](https://github.com/PXLAIRobotics/ROSNoeticDocker).
+[ROSNoeticDocker repository"(https://github.com/PXLAIRobotics/ROSNoeticDocker).
 That repository was created for the AI & Robotics courses at the PXL University 
 of Applied Sciences and Arts. But it's free for all to use!
 
