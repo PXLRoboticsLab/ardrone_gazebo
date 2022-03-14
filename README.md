@@ -2,7 +2,7 @@
 
 This `ardrone_gazebo` repository contains a ROS Noetic package to simulate the old but well known AR.Drone. The ROS package was
 created by incorporating ideas, code and artefacts from [tum_simulator](http://wiki.ros.org/tum_simulator),
-[sjtu_drone](https://github.com/tahsinkose/sjtu-drone/) and
+[tahsinkose/sjtu_drone](https://github.com/tahsinkose/sjtu-drone/) and
 [NovoG93/sjtu-drone](https://github.com/NovoG93/sjtu-drone) combined with a
 (partial) clean-up and rewrite of a few source code files.
 
@@ -49,8 +49,8 @@ form the Dockerfile before building the image.)
 #### Prerequisites
 
 - Basic bash, git &amp; ROS knowledge
-- An installed and working ROS Noetic distribution
-- Gazebo 11 installed.
+- An installed and working ROS Noetic distribution (`ros-noetic-desktop` is recommended)
+- Gazebo 11 installed
 - A sourced Catkin workspace
 
 
@@ -112,3 +112,29 @@ There are a few `launch` files included with this repository.
 <p align="center">
   <img height="300" src="./images/ten_ardrones.png">
 </p>
+
+
+## Context:
+Each academic year there's an one-week international Drone course at the PXL
+University of Applied Sciences and Arts (Belgium). Unfortunately, during the
+previous few years it was canceled due to the well-known COVID-19 pandemic.
+Luckily, (it looks like) the saga has come to an end!
+
+In the past, we ([I](https://github.com/TimDupontPXL)'m one of the
+researchers/lecturers responsible for the course) used the AR.Drone. The
+students are a broad mix of computer science students. Some have a technical
+focus others are more business oriented. The existing Gazebo plugins for the
+AR.Drone are outdated or I couldn't make them work on Noetic. Using an old ROS
+Distribution and Python2 in 2022 was a big no-go! Moving to the PX4 wasn't an
+option due to the type of students. Therefore, I mixed and matched code,
+artifacts, ... from a few repositories, cleaned-up/rewrote some code... And,
+made the ardrone_gazebo package. It's nothing special. Big thank you to the 
+[TUM Computer Vision Group](https://github.com/tum-vision/tum_simulator), 
+[tahsinkose](https://github.com/tahsinkose/sjtu-drone)
+and [NovoG93](https://github.com/NovoG93/sjtu-drone)! They did the real work.
+
+
++ Because multi-agent-systems is one of the topics I teach, I took this
+  opportunity to add multi-drone support.
+
+Enjoy!
