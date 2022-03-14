@@ -1,9 +1,9 @@
 # The `ardrone_gazebo` ROS Noetic package
 
 This `ardrone_gazebo` repository contains a ROS Noetic package to simulate the old but well known AR.Drone. The ROS package was
-created by incorporating ideas, code and artefacts from ["tum_simulator"](http://wiki.ros.org/tum_simulator),
-["sjtu_drone"](https://github.com/tahsinkose/sjtu-drone/) and
-["NovoG93/sjtu-drone"](https://github.com/NovoG93/sjtu-drone) combined with a
+created by incorporating ideas, code and artefacts from [tum_simulator](http://wiki.ros.org/tum_simulator),
+[sjtu_drone](https://github.com/tahsinkose/sjtu-drone/) and
+[NovoG93/sjtu-drone](https://github.com/NovoG93/sjtu-drone) combined with a
 (partial) clean-up and rewrite of a few source code files.
 
 A single AR.Drone in an empty Gazebo world:
@@ -16,13 +16,13 @@ A single AR.Drone in an empty Gazebo world:
 - Simulates the AR.Drone in a standard ROS Noetic setup with Gazebo 11.
 - Tries to mimic the original `tum_simulator`. (Currently far from perfect!)
 - **Supports multiple concurrent AR.Drones in Gazebo!**
-- All required external Git repositories are located on the ["PXLRoboticsLab GitHub community"](https://github.com/pxlroboticslab).
+- All required external Git repositories are located on the [PXLRoboticsLab GitHub community](https://github.com/pxlroboticslab).
 
 
 ## Dependencies
 
-- ["ardrone_autonomy fork on PXLRoboticsLab"](https://github.com/PXLRoboticsLab/ardrone_autonomy)
-- ["ardronelib fork on PXLRoboticsLab"](https://github.com/PXLRoboticsLab/ardronelib)
+- [ardrone_autonomy fork on PXLRoboticsLab](https://github.com/PXLRoboticsLab/ardrone_autonomy)
+- [ardronelib fork on PXLRoboticsLab](https://github.com/PXLRoboticsLab/ardronelib)
 
 
 ## How to use
@@ -103,7 +103,7 @@ There are a few `launch` files included with this repository.
   <img height="300" src="./images/four_ardrones.png">
 </p>
 
-### Ten drone
+### Ten drones
 
 ```bash
 <On your ROS system>$ roslaunch ardrone_gazebo ten_ardrones.launch 
